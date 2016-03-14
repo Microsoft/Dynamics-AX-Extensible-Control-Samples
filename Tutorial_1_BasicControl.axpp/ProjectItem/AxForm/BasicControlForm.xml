@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxForm xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="Microsoft.Dynamics.AX.Metadata.V6">
+	<Name>BasicControlForm</Name>
+	<SourceCode>
+		<Methods xmlns="">
+			<Method>
+				<Name>classDeclaration</Name>
+				<Source><![CDATA[
+[Form]
+public class BasicControlForm extends FormRun
+{
+}
+]]></Source>
+			</Method>
+			<Method>
+				<Name>init</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    public void init()
+    {
+        super();
+        this.design().addControlEx(classStr(BasicControl),"BasicControl1");
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+		<DataSources xmlns="" />
+		<DataControls xmlns="" />
+	</SourceCode>
+	<DataSources />
+	<Design>
+		<Controls xmlns="" />
+	</Design>
+	<Parts />
+</AxForm>
