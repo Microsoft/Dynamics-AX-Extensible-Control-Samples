@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>BasicActionControl</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[FormControlAttribute("BasicActionControl","resources/html/BasicActionControl", classstr(BuildBasicActionControl))]
+class BasicActionControl extends FormTemplateControl
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    public void new(FormBuildControl _build, FormRun _formRun)
+    {
+        super(_build,_formRun);
+
+        this.setTemplateId("BasicActionControl");
+        this.setResourceBundleName("resources/html/BasicActionControl");
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>clicked</Name>
+				<Source><![CDATA[
+    [FormCommandAttribute("Clicked")]
+    public void clicked(str _text)
+    {
+        
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxResource xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>BasicUserEntryControlJS</Name>
+	<FileName>BasicUserEntryControl.js</FileName>
+	<RelativeUriInModelStore>Tutorial\Tutorial\AxResource\ResourceContent\Scripts\BasicUserEntryControl.js</RelativeUriInModelStore>
+	<TypeOfResource>Scripts</TypeOfResource>
+</AxResource>
