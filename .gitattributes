@@ -1,3 +1,2 @@
 $ cat .gitattributes
-*.xpp linguist-language=X++
-*.axpp binary
+*.xpp linguist-language=C#
