@@ -1,6 +1,5 @@
 [FormControlAttribute("BasicControl","resources/html/BasicControl", classstr(FormBuildControl))]
 class BasicControl extends FormTemplateControl
-
 {
     public void new(FormBuildControl _build, FormRun _formRun)
     {
