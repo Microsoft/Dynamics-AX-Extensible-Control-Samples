@@ -1,0 +1,4 @@
+[FormDesignControlAttribute("Basic action control")]
+class BuildBasicActionControl extends FormBuildControl
+{
+}

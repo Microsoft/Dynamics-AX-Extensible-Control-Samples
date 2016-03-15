@@ -1,0 +1,13 @@
+[Form]
+public class BasicControlForm extends FormRun
+{
+    /// <summary>
+    ///
+    /// </summary>
+    public void init()
+    {
+        super();
+        this.design().addControlEx(classStr(BasicControl),"BasicControl1");
+    }
+
+}

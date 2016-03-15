@@ -1,0 +1,18 @@
+[FormControlAttribute("BasicActionControl","resources/html/BasicActionControl", classstr(BuildBasicActionControl))]
+class BasicActionControl extends FormTemplateControl
+{
+    public void new(FormBuildControl _build, FormRun _formRun)
+    {
+        super(_build,_formRun);
+
+        this.setTemplateId("BasicActionControl");
+        this.setResourceBundleName("resources/html/BasicActionControl");
+    }
+
+    [FormCommandAttribute("Clicked")]
+    public void clicked(str _text)
+    {
+        
+    }
+
+}

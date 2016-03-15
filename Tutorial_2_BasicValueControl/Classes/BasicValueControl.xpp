@@ -1,0 +1,28 @@
+[FormControlAttribute("BasicValueControl","resources/html/BasicValueControl", classstr(FormBuildControl))]
+class BasicValueControl extends FormTemplateControl
+{
+    #define.ValuePropertyName("Value")
+
+    FormProperty valueProperty;
+
+    public void new(FormBuildControl _build, FormRun _formRun)
+    {
+        super(_build,_formRun);
+
+        this.setTemplateId("BasicValueControl");
+        this.setResourceBundleName("resources/html/BasicValueControl");
+
+        valueProperty = this.addProperty(methodStr(BasicValueControl, parmValue), Types::String);
+    }
+
+    [FormPropertyAttribute(FormPropertyKind::Value, #ValuePropertyName, true)]
+    public str parmValue(str _value = valueProperty.parmValue())
+    {
+        if(!prmisdefault(_value))
+        {
+            valueProperty.setValueOrBinding(_value);
+        }
+        return valueProperty.parmValue();
+    }
+
+}

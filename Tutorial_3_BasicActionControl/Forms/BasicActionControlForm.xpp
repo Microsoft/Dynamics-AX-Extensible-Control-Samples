@@ -1,0 +1,18 @@
+[Form]
+public class BasicActionControlForm extends FormRun
+{
+    [Control("Custom")]
+    class BasicActionControl1
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked(str _text = "")
+        {
+            super(_text);
+            info(_text);
+        }
+
+    }
+
+}

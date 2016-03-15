@@ -1,0 +1,16 @@
+[Form]
+public class BasicValueControlForm extends FormRun
+{
+    BasicValueControl basicValueControl;
+
+    /// <summary>
+    ///
+    /// </summary>
+    public void init()
+    {
+        super();
+        basicValueControl = this.design().addControlEx(classStr(BasicValueControl), "BasicValueControl1");
+        basicValueControl.parmValue("Hello World!");
+    }
+
+}

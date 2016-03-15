@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<AxResource xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
-	<Name>BasicActionControlJS</Name>
-	<FileName>BasicActionControl.js</FileName>
-	<RelativeUriInModelStore>Tutorial\Tutorial\AxResource\ResourceContent\Scripts\BasicActionControl.js</RelativeUriInModelStore>
-	<TypeOfResource>Scripts</TypeOfResource>
-</AxResource>

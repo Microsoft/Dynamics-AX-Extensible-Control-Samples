@@ -1,0 +1,30 @@
+[FormControlAttribute("BasicUserEntryControl","resources/html/BasicUserEntryControl", classstr(FormBuildControl))]
+class BasicUserEntryControl extends FormTemplateControl
+{
+    FormProperty valueProperty;
+
+    public void new(FormBuildControl _build, FormRun _formRun)
+    {
+        super(_build,_formRun);
+
+        this.setTemplateId("BasicUserEntryControl");
+        this.setResourceBundleName("resources/html/BasicUserEntryControl");
+
+        valueProperty = this.addProperty(methodStr(BasicUserEntryControl, getValue), Types::String);
+    }
+
+    [FormPropertyAttribute(FormPropertyKind::Value, "Value", true)]
+    public str getValue()
+    {
+       return valueProperty.parmValue();
+    }
+
+    [FormCommandAttribute("SetValue")]
+    public void setValue(str _value = "")
+    {
+        valueProperty.setValueOrBinding(_value);
+        this.properties().notifyChange(valueProperty);  
+        info(strFmt("Value set to: %1",_value));   
+    }
+
+}
