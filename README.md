@@ -1,6 +1,8 @@
 # Dynamics-AX-Extensible-Control-Samples
 Sample code and tutorials for building extensible controls for Microsoft Dynamics AX. Includes code samples for AX Forms, AX Tables, AX Classes, and AX Resources (HTML/JS/CSS).
 
+For full API documentation, see https://ax.help.dynamics.com/en/extensible-control-programming-reference
+
 Note that the files with extension "xpp" are not valid X++ metadata files and cannot be opened using the Microsoft Dynamics AX Visual Studio Tools. These files been stripped of their auto-generated metadata so that the source code is easier to read via Github. To open the files using the Microsoft Dynamics AX Visual Studio Tools, follow the instructions below.
 
 Prerequisites to run the samples 
