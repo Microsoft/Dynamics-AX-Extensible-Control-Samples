@@ -20,3 +20,6 @@ public class BasicUserEntryControlForm extends FormRun
     }
 
 }
+
+//The following is not a part of the sample code
+//vim: set syntax=csharp:

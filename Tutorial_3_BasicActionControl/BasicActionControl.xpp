@@ -16,3 +16,6 @@ class BasicActionControl extends FormTemplateControl
     }
 
 }
+
+//The following is not a part of the sample code
+//vim: set syntax=csharp:
