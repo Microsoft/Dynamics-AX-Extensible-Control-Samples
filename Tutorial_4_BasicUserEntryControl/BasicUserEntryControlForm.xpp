@@ -15,7 +15,7 @@ public class BasicUserEntryControlForm extends FormRun
         basicUserEntryControl.setValue("Hello World!");
 
         staticTextControl1 = this.design().addControl(FormControlType::StaticText, "StaticTextControl1");
-        staticTextControl1.text("The new value will be sent back to the server after you remove focus from the control by clicking in blank space");
+        staticTextControl1.text("The new value will be sent back to the server after you remove focus from the control by pressing tab or clicking in blank space");
 
     }
 

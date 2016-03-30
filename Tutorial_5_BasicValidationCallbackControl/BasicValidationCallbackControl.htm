@@ -1,0 +1,7 @@
+<script src="../scripts/BasicValidationCallbackControl.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/styles/BasicValidationCallbackControl.css"/>
+
+<div id="BasicValidationCallbackControl" class="basicValidationCallbackControl">    
+    <div data-dyn-bind="text: 'Enter an integer'"></div>
+    <input data-dyn-bind="event: {change: $control.handleUserValue}, attr: {value: $control.Value}, css: {'error': $dyn.value($control.validationError)}" />   
+</div>

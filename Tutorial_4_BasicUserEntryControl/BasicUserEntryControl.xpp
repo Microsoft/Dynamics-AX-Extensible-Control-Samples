@@ -1,7 +1,9 @@
 [FormControlAttribute("BasicUserEntryControl","resources/html/BasicUserEntryControl", classstr(FormBuildControl))]
 class BasicUserEntryControl extends FormTemplateControl
 {
-    FormProperty valueProperty;
+    #define.ValuePropertyName("Value")
+    #define.SetValueCommandName("SetValue")
+    FormProperty valueProperty;    
 
     public void new(FormBuildControl _build, FormRun _formRun)
     {
@@ -13,13 +15,19 @@ class BasicUserEntryControl extends FormTemplateControl
         valueProperty = this.addProperty(methodStr(BasicUserEntryControl, getValue), Types::String);
     }
 
-    [FormPropertyAttribute(FormPropertyKind::Value, "Value", true)]
-    public str getValue()
+    [FormPropertyAttribute(FormPropertyKind::Value, ValuePropertyName, true)]
+    private str getValue()
     {
        return valueProperty.parmValue();
     }
 
-    [FormCommandAttribute("SetValue")]
+    /* 
+		In general, a method that is exposed externally via a FormPropertyAttribute or FormCommandAttribute
+		should not also be declared public. This is because externally exposed methods usually necessitate
+		additional data validation and security that methods called from internal code do not need.
+		See Tutorial 5 for an example of how to correctly design this behavior.
+    */
+    [FormCommandAttribute(SetValueCommandName)]
     public void setValue(str _value = "")
     {
         valueProperty.setValueOrBinding(_value);

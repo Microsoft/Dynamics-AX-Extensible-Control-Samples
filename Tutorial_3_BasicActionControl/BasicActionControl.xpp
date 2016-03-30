@@ -10,7 +10,7 @@ class BasicActionControl extends FormTemplateControl
     }
 
     [FormCommandAttribute("Clicked")]
-    public void clicked(str _text)
+    private void clicked(str _text)
     {
         
     }

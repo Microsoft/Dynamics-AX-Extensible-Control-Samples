@@ -1,0 +1,84 @@
+[FormControlAttribute("BasicValidationCallbackControl","resources/html/BasicValidationCallbackControl", classstr(FormBuildControl))]
+class BasicValidationCallbackControl extends FormTemplateControl
+{
+    #define.ValuePropertyName("Value")
+    #define.SetValueCommandName("SetValue")
+    FormProperty valueProperty;
+
+    public void new(FormBuildControl _build, FormRun _formRun)
+    {
+        super(_build,_formRun);
+
+        this.setTemplateId("BasicValidationCallbackControl");
+        this.setResourceBundleName("resources/html/BasicValidationCallbackControl");
+
+        valueProperty = this.addProperty(methodStr(BasicValidationCallbackControl, getValue), Types::Integer);
+    }
+
+    /* 
+		This method is declared public and is also 
+		externally exposed because the FormPropertyAttribute is supplied.
+		Since the method does not accept any parameters, there is 
+		no special handling necessary for validating the input.
+		Both X++ and external calls to this method go through the same code path.
+    */
+    [FormPropertyAttribute(FormPropertyKind::Value, #ValuePropertyName, true)]
+    public int getValue()
+    {
+       return valueProperty.parmValue();
+    }
+
+    /*
+		This method is externally exposed to the client
+		and values passed in from external sources like the client
+		must be checked for validation and security. However, values passed
+		from X++ are type checked and secured automatically.
+		So there is a separate method for X++ calls which bypasses this check.
+    */
+    [FormCommandAttribute(#SetValueCommandName)]
+    private boolean setValueExternal(str _value = "")
+    {
+        try
+        {
+            // Validate that the user's value is an integer 
+            int value = str2Int(_value);             
+            if(int2Str(value) == _value || _value == "")
+            {
+                this.setValue(value);
+                return true;
+            }
+            else
+            {
+                error(strFmt("'%1' is not an integer. Please specify an integer for the %2",_value, this.name()));
+                return false;    
+            }
+        }   
+        catch(Exception::Numeric)
+        {
+            error(strFmt("'%1' is not an integer. Please specify an integer for the %2",_value, this.name()));
+            return false;
+        }
+    }
+
+    /*
+		This method does not have the FormCommandAttribute so 
+		it is not exposed externally and is accessible from X++. 
+		The type specified in the method signature will be checked 
+		automatically by the .NET langauge compiler and runtime.
+    */
+    public void setValue(int _value)
+    {
+        valueProperty.setValueOrBinding(_value);
+        /*
+			When a FormProperty is changed via the external property, 
+			its subscribers are automatically notified of the change.
+			When changing a FormProperty manually, be sure to notify
+			the subscribers using the API below.
+        */
+        this.properties().notifyChange(valueProperty); 
+    }
+
+}
+
+//The following is not a part of the sample code
+//vim: set syntax=csharp:

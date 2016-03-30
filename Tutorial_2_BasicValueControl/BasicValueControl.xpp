@@ -16,7 +16,7 @@ class BasicValueControl extends FormTemplateControl
     }
 
     [FormPropertyAttribute(FormPropertyKind::Value, #ValuePropertyName, true)]
-    public str parmValue(str _value = valueProperty.parmValue())
+    private str parmValue(str _value = valueProperty.parmValue())
     {
         if(!prmisdefault(_value))
         {

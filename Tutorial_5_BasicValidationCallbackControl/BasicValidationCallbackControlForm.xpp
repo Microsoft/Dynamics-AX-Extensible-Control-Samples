@@ -1,0 +1,30 @@
+[Form]
+public class BasicValidationCallbackControlForm extends FormRun
+{
+    BasicValidationCallbackControl basicValidationCallbackControl;
+    FormStaticTextControl staticTextControl1;
+    FormStaticTextControl staticTextControl2;
+    FormStaticTextControl staticTextControl3;
+    /// <summary>
+    ///
+    /// </summary>
+    public void init()
+    {
+        super();
+        basicValidationCallbackControl = this.design().addControlEx(classStr(BasicValidationCallbackControl),"BasicValidationCallbackControl1");
+        basicValidationCallbackControl.setValue(0);
+
+        staticTextControl1 = this.design().addControl(FormControlType::StaticText, "StaticTextControl1");
+        staticTextControl1.text("The new value will be sent back to the server after you remove focus from the control by pressing tab or clicking in blank space");
+
+        staticTextControl2 = this.design().addControl(FormControlType::StaticText, "StaticTextControl2");
+        staticTextControl2.text("If you enter something other than an integer, an error will be shown");
+
+        staticTextControl3 = this.design().addControl(FormControlType::StaticText, "StaticTextControl3");
+        staticTextControl3.text("After correcting the error, press Save to remove the error message.");
+    }
+
+}
+
+//The following is not a part of the sample code
+//vim: set syntax=csharp:
