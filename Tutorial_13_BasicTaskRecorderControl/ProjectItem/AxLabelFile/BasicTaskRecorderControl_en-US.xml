@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<AxLabelFile xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
-	<Name>BasicTaskRecorderControl_en-US</Name>
-	<LabelContentFileName>BasicTaskRecorderControl.en-US.label.txt</LabelContentFileName>
-	<LabelFileId>BasicTaskRecorderControl</LabelFileId>
-	<RelativeUriInModelStore>Tutorial\Tutorial\AxLabelFile\LabelResources\en-US\BasicTaskRecorderControl.en-US.label.txt</RelativeUriInModelStore>
-</AxLabelFile>
