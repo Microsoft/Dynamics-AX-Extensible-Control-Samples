@@ -1,0 +1,18 @@
+[Form]
+public class BasicTaskRecorderControlForm extends FormRun
+{
+    /// <summary>
+    ///
+    /// </summary>
+    public void init()
+    {
+        super();
+        BasicTaskRecorderControl control;
+        control = this.design().addControlEx(classStr(BasicTaskRecorderControl), "control1");
+        control.parmLabel("Basic Task Recorder Control");
+    }
+
+}
+
+//The following is not a part of the sample code
+//vim: set syntax=csharp:
