@@ -1,0 +1,6 @@
+<script src="../scripts/BasicTaskRecorderControl.js"></script>
+<div id="BasicTaskRecorderControl">
+    <div><span data-dyn-bind="text: $control.Label"></span></div>
+    <div><input style="border: 1px solid" data-dyn-bind="event: {change: $control.handleUserValue}, attr: {value: $control.Value}" /></div>
+    <div><a href="javascript.void(0)" data-dyn-bind="click: $control.click">Click here!</a></div>
+</div>

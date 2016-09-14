@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>BasicTaskRecorderControl</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[FormControlAttribute("BasicTaskRecorderControl","/resources/html/BasicTaskRecorderControl", classstr(FormBuildControl))]
+class BasicTaskRecorderControl extends FormTemplateControl
+{
+    #define.LabelPropertyName("Label")
+    #define.ValuePropertyName("Value")
+    #define.ClickCommandName("Clicked")
+
+    FormProperty labelProperty;
+    FormProperty valueProperty;
+    
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    public void new(FormBuildControl _build, FormRun _formRun)
+    {
+        super(_build,_formRun);
+        this.setTemplateId("BasicTaskRecorderControl");
+        this.setResourceBundleName("resources/html/BasicTaskRecorderControl");
+
+        valueProperty = this.addProperty(methodStr(BasicTaskRecorderControl, parmValue), Types::String);
+        labelProperty = this.addProperty(methodStr(BasicTaskRecorderControl, parmLabel), Types::String);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmLabel</Name>
+				<Source><![CDATA[
+    [FormPropertyAttribute(FormPropertyKind::Value, #LabelPropertyName, true)]
+    public str parmLabel(str _value = labelProperty.parmValue())
+    {
+        if(!prmIsDefault(_value))
+        {
+            labelProperty.setValueOrBinding(_value);
+        }
+        return labelProperty.parmValue();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmValue</Name>
+				<Source><![CDATA[
+    [FormPropertyAttribute(FormPropertyKind::Value, #ValuePropertyName, false, true /* set to true so that value changes propogate to X++ immediately */)]
+    public str parmValue(str _value = valueProperty.parmValue())
+    {
+        if(!prmIsDefault(_value))
+        {
+            str valueLabel = strFmt("@basicTaskRecorderControl:ValueLabel", _value);
+            using (var scope = SysTaskRecorder::addPropertyUserAction(
+                    #ValuePropertyName /* The propery name.*/ ,
+                    this,
+                    _value /* The property value to record. This is the value Task recorder will use during auto-play. This is also %2 in the instruction label.*/,
+                    literalStr("@BasicTaskRecorderControl:ValueSetInstruction") /* the instruction label ID */,
+                    valueLabel /* The value label override. If provided, this replaces the property value as %2 in the instruction label for displaying to the user. But this does not repalce the actual value that is recorded. */,
+                    this.parmLabel() /* The control's label. This is %1 in the instruction label, if provided. Otherwise control instance name is used */
+                )
+            )
+            {
+                valueProperty.setValueOrBinding(_value);
+            }
+        }
+        return valueProperty.parmValue();
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>userClicked</Name>
+				<Source><![CDATA[
+    [FormCommandAttribute(#ClickCommandName)]
+    public void userClicked(str _arg1 = "")
+    {
+
+        /* 
+            Example showing that you can dynamically build your label.
+            In this example the label changes based on the number of times clicked:
+            i.e. "1st" or "2nd" or "3rd" or "Nth"
+        */
+        int counter = str2Int(_arg1);
+        int time = counter mod 10;
+        str timeSuffix = "th";
+        if (counter - time != 10) /* don't do this for 11th 12th and 13th times */
+        {
+            switch (time)
+            {
+                case 1: 
+                    timeSuffix = "st";
+                    break;
+                case 2:
+                    timeSuffix = "nd";
+                    break;
+                case 3:
+                    timeSuffix = "rd";
+                    break;            
+            }
+        }
+        str userReadableValue = strFmt("%1%2", _arg1, timeSuffix);
+
+        // Place the command atributes
+        container cmdArgs = [_arg1];
+
+        using (var scope = SysTaskRecorder::addCommandUserAction(
+                #ClickCommandName /* Command name. This is %2 in the instruction label */, 
+                this, 
+                cmdArgs /* Command arguments. These are %3-%5 in the instruction label */,
+
+                /* 
+                    Unlike recording PropertyUserActions we cannot specify a Value Label override for CommandUserActions.
+                    So instead we manually set %3 to our userReadableValue ("1st" "2nd" etc.)
+                    If we did not specify %3 here, then Task recorder would replace %3 with the actual command value ( "1" "2" etc.)
+                */
+                strFmt("@BasicTaskRecorderControl:ClickInstruction","%1", "%2", userReadableValue),
+                conNull(), 
+                false,
+                SysTaskRecorderNodeCommandReturnType::Void,
+                null,
+                this.parmLabel() /* Control label. This is %1 in the instruction label. otherwise the control instance name is used */
+            )                  
+        )
+        {
+            info(strFmt("You've clicked the link %1 time(s)", _arg1));
+        }
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

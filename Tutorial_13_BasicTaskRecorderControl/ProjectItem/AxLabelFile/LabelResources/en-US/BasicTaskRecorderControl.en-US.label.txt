@@ -1,0 +1,6 @@
+ValueSetInstruction=In the %1's text box, type %2.
+ ;Label file comment - see above label
+ClickInstruction=Click the link under %1 for the %3 time.
+ ;New Comment
+ValueLabel="%1"
+ ;New Comment
